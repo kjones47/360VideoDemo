@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>360 Video Projection Demo</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <!-- Bootstrap CSS-->
+<head>
+	<title>360 Video Projection Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Google fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cardo:400,400i">
@@ -22,125 +18,49 @@
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="myjs/three.js"></script>
-		<script src="myjs/OrbitControls.js"></script>
-		<style>
-		
-		body{
-			text-align:center;
-		}
-		.flex-container {
-			display: flex;
-			flex-wrap: wrap;
-			align: center;
-			margin-left: 10wv;
-			margin-top: 30px;
-			margin-right: 10wv;
-			justify-content: space-around;
-		}
-		.container{
-		margin-left: 10wv;
-		margin-right: 10wv;
-		}
-			
-		#equi3d  {
-			top:10%;
-			left:0%;
-			width: 10wv;
-			height: 250px;
-			float:left;
-			padding-bottom:25px;
-		}
-		#cube3d  {
-			width: 10wv;
-			height: 250px;
-			padding:20wv;
-			float:left;
-			padding-bottom:25px;
-		}
-		#eac3d {
-			width: 10wv;
-			height: 250px;
-			padding-bottom:25px;
-		}
-		#barrel3d  {
-			width: 10wv;
-			height: 250px;
-			padding-bottom:25px;
-		}
-		p{
-		width: 5wv;
-		}
-		#equiV{
-			position:
-		}
-		#cubeV{
-		
-		}
-		#eacV{
-		
-		}
-		#barrelV{
-		
-		}
-		#page2{
-		 background: #aad1c6;
-		}
-		.text-uppercase lined lined-compact {
-			font-size: 20px;
-		}
-		
-		body{
-			background: linear-gradient(70deg, #aad1c6, #3a5e55);
-			background-size: 400% 400%;
-			-webkit-animation: AnimationName 10s ease 1;
-			-moz-animation: AnimationName 10s ease 1;
-			animation: AnimationName 10s ease 1;
-		}
-
-		@-webkit-keyframes AnimationName {
-		0%{background-position:0% 50%}
-		50%{background-position:100% 50%}
-		100%{background-position:0% 50%}
-		}
-		@-moz-keyframes AnimationName {
-		0%{background-position:0% 50%}
-		50%{background-position:100% 50%}
-		100%{background-position:0% 50%}
-		}
-		@keyframes AnimationName { 
-		0%{background-position:0% 50%}
-		50%{background-position:100% 50%}
-		100%{background-position:0% 50%}
-		}
-		</style>
- </head>
-  <body>
-    <div class="main">
-	<!-- PAGE 1 - START PAGE -->
-	<div id="page1">
-      <section class="bg-cover bg-center hero">
+	<!-- CSS -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+	<link rel="stylesheet" href="css/kentheme.css" id="theme-stylesheet">
+	<!-- JAVASCRIPT -->
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<!-- THREEJS -->
+	<script src="myjs/three.js"></script>
+	<script src="myjs/video.js"></script>
+	<script src="myjs/OrbitControls.js"></script>
+	<!--Videos-->
+	<video id="equiVid" loop muted crossOrigin="anonymous" webkit-playsinline style="display:none;">
+			<source src="https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/equi/Orion360_test_video_1920x960.mp4">
+	</video>
+	<video id="eacVid" crossorigin="anonymous" autoplay loop style="display:none" controls>
+			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/oriontestvideo_EAC.mp4" type='video/mp4'>
+	</video>
+</head>
+<body>
+<!-- Start of first page -->
+<div data-role="page" id="page1">
+		<section class="bg-cover bg-center hero">
         <div class="dark-overlay"></div>
         <div class="position-relative z-index-1">
           <div class="container text-center text-white">
             <p class="font-italic lead">Welcome.</p>
             <h1 class="text-uppercase my-4">360-Degree Video Spherical Projections Demo</h1>
-            <p class="font-italic lead">Click <a> Here </a> to start</p>
-    
+            <p class="font-italic lead">Click the arrow to start</p>
           </div>
         </div>
-        <div class="scroll-btn link-scroll"><i class="fas fa-angle-double-right"></i></div>
+        <a href="#page2" data-transition="slide"><div id="startbutton" class="scroll-btn link-scroll"><i class="fas fa-angle-double-right"></i></div></a>
       </section>
-	  </div>
-	  <!-- PAGE 2 - THE PROJECTIONS -->
-	  <div id="page2">
-      <section>
-	    <h2 class="text-uppercase lined" >Part I: Spherical Projections</h2>
-	  <div class="flex-container">
+</div><!-- /page -->
+
+<!-- Start of second page -->
+<div data-role="page" id="page2">
+		<!-- PAGE 2 - THE PROJECTIONS -->
+      <section id="page2">
+	    <h2 class="text-uppercase" >Part I: Spherical Projections</h2>
+		<h4 class="font-italic lead lined"> To create a 360-degree video, we take a video and map it onto a specific geometry after formatting. </h4>
+	  <div class="ui-grid-c">
+	  <div class="ui-block-a"><div class="ui-body ui-body-d">
 	  <div id="equi3d"></canvas>
 		<script>
 			var equi3d = document.getElementById("equi3d");
@@ -148,28 +68,32 @@
 			var CANVAS_HEIGHT = 250;
 
 			var equiScene = new THREE.Scene();
-			var equiCamera = new THREE.PerspectiveCamera(45, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1, 100);
+			var equiCamera = new THREE.PerspectiveCamera(55, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1, 100);
 
 			var equiRenderer = new THREE.WebGLRenderer();
 			equiRenderer.setClearColor(0x000, 1.0);
 			equiRenderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 			equi3d.appendChild(equiRenderer.domElement);
-
-			var equiGeo = new THREE.SphereBufferGeometry(0.75, 16, 16 );
-			var equiMat = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			
+			var equiVid = document.getElementById( 'equiVid' );
+			equiVid.play();
+			var textureEqui = new THREE.VideoTexture( equiVid );
+			
+			var equiGeo = new THREE.SphereBufferGeometry(3, 28, 28 );
+			var equiMat = new THREE.MeshBasicMaterial( { map: textureEqui, side: THREE.DoubleSide } );
 			var equiMesh = new THREE.Mesh( equiGeo, equiMat );
 			equiScene.add( equiMesh );
 			
 			var equiControls = new THREE.OrbitControls( equiCamera, equiRenderer.domElement );
-			equiControls.minDistance = 2;
-			equiControls.maxDistance = 4;
+			equiControls.minDistance = 1;
+			equiControls.maxDistance = 7;
 			
-			equiCamera.position.z = 3;
+			equiCamera.position.z = 1;
 
 			var equiAnimate = function () {
 				requestAnimationFrame( equiAnimate );
 
-				equiMesh.rotation.x += 0.01;
+				//equiMesh.rotation.x += 0.01;
 				equiMesh.rotation.y += 0.01;
 
 				equiRenderer.render( equiScene, equiCamera );
@@ -183,9 +107,10 @@
 		h5equi.appendChild(t_equi);
 		document.getElementById("equi3d").appendChild(h5equi);
 			
-		</script>
-	  </div>
-	  <div id="cube3d"></canvas>
+		</script></div>
+	  </div></div>
+	 <div class="ui-block-b"><div class="ui-body ui-body-d">
+	 <div id="cube3d"></canvas>
 		<script>
 			var cube3d = document.getElementById("cube3d");
 			var CANVAS_WIDTH = 250;
@@ -198,22 +123,40 @@
 			cubeRenderer.setClearColor(0x000, 1.0);
 			cubeRenderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 			cube3d.appendChild(cubeRenderer.domElement);
+			
+			var materialArray = [];
+			var ft = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_front.png');
+			var bk = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_back.png');
+			var lt = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_top.png');
+			var rt = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_bottom.png');
+			var tp = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_left.png');
+			var bm = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_right.png');
+			//MAKE TEXTURE FACES
+			materialArray.push(new THREE.MeshBasicMaterial({map: ft}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: bk}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: lt}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: rt}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: tp}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: bm}));
+			
+			for(let i=0;i<6;i++){
+				materialArray[i].side = THREE.DoubleSide;
+			}
 
-			var cubeGeo = new THREE.BoxGeometry( 1, 1, 1 );
-			var cubeMat = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			var cubeMesh = new THREE.Mesh( cubeGeo, cubeMat );
+			var cubeGeo = new THREE.BoxGeometry( 3, 3, 3 );
+			var cubeMesh = new THREE.Mesh( cubeGeo, materialArray );
 			cubeScene.add( cubeMesh );
 			
 			var cubeControls = new THREE.OrbitControls( cubeCamera, cubeRenderer.domElement );
-			cubeControls.minDistance = 2;
-			cubeControls.maxDistance = 4;
+			cubeControls.minDistance = 1;
+			cubeControls.maxDistance = 7;
 			
-			cubeCamera.position.z = 3;
+			cubeCamera.position.z = 1;
 
 			var cubeAnimate = function () {
 				requestAnimationFrame( cubeAnimate );
 
-				cubeMesh.rotation.x += 0.01;
+				//cubeMesh.rotation.x += 0.01;
 				cubeMesh.rotation.y += 0.01;
 
 				cubeRenderer.render( cubeScene, cubeCamera );
@@ -227,8 +170,10 @@
 		h5cube.appendChild(t_cube);
 		document.getElementById("cube3d").appendChild(h5cube);
 		</script>
-	  </div>
-	  <div id="eac3d"></canvas>
+		</div>
+	  </div></div>
+	  <div class="ui-block-c"><div class="ui-body ui-body-d">
+	<div id="eac3d"></canvas>
 		<script>
 			var eac3d = document.getElementById("eac3d");
 			var CANVAS_WIDTH = 250;
@@ -241,22 +186,59 @@
 			eacRenderer.setClearColor(0x000, 1.0);
 			eacRenderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 			eac3d.appendChild(eacRenderer.domElement);
+			
+			eacVid = document.getElementById( 'eacVid' );
+			eacVid.play();
+			eacVidTexture = new THREE.VideoTexture( eacVid );
+			eacVidTexture.minFilter = THREE.LinearFilter;
+			eacVidTexture.magFilter = THREE.LinearFilter;
+			eacVidTexture.format = THREE.RGBFormat;
+			
+			var face4 = [new THREE.Vector2(0, .5), new THREE.Vector2(.3333, .5), new THREE.Vector2(.3333, 1), new THREE.Vector2(0, 1)];
+			var face3 = [new THREE.Vector2(.3333, .5), new THREE.Vector2(.6666, .5), new THREE.Vector2(.6666, 1), new THREE.Vector2(.3333, 1)]; 
+			var face1 = [new THREE.Vector2(.6666, .5), new THREE.Vector2(1, .5), new THREE.Vector2(1, 1), new THREE.Vector2(.6666, 1)]; //left
+			var face2 = [new THREE.Vector2(0, 0), new THREE.Vector2(.3333, 0), new THREE.Vector2(.3333, .5), new THREE.Vector2(0, .5)]; //right
+			var face5 = [new THREE.Vector2(.3333, 0), new THREE.Vector2(.6666, 0), new THREE.Vector2(.6666, .5), new THREE.Vector2(.3333, .5)]; //front
+			var face6 = [new THREE.Vector2(1, .5), new THREE.Vector2(.6666, .5), new THREE.Vector2(.6666, 0), new THREE.Vector2(1, 0)]; //bottom
+			
+			var eacGeo = new THREE.BoxGeometry( 3, 3, 3 );
+			eacGeo.faceVertexUvs[0] = [];
 
-			var eacGeo = new THREE.BoxGeometry( 1, 1, 1 );
-			var eacMat = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			eacGeo.faceVertexUvs[0][0] = [face1[0], face1[1], face1[3]];
+			eacGeo.faceVertexUvs[0][1] = [face1[1], face1[2], face1[3]];
+
+			eacGeo.faceVertexUvs[0][2] = [face2[0], face2[1], face2[3]];
+			eacGeo.faceVertexUvs[0][3] = [face2[1], face2[2], face2[3]];
+
+			eacGeo.faceVertexUvs[0][4] = [face3[0], face3[1], face3[3]];
+			eacGeo.faceVertexUvs[0][5] = [face3[1], face3[2], face3[3]];
+
+			eacGeo.faceVertexUvs[0][6] = [face4[0], face4[1], face4[3]];
+			eacGeo.faceVertexUvs[0][7] = [face4[1], face4[2], face4[3]];
+
+			eacGeo.faceVertexUvs[0][8] = [face5[0], face5[1], face5[3]];
+			eacGeo.faceVertexUvs[0][9] = [face5[1], face5[2], face5[3]];
+
+			eacGeo.faceVertexUvs[0][10] = [face6[0], face6[1], face6[3]];
+			eacGeo.faceVertexUvs[0][11] = [face6[1], face6[2], face6[3]];
+			
+			eacGeo.rotateY(Math.PI/2);
+			eacGeo.rotateX(Math.PI/2);
+			eacGeo.scale( 1, 1, 1);
+			var eacMat = new THREE.MeshBasicMaterial( { map: eacVidTexture, side:THREE.DoubleSide } );
 			var eacMesh = new THREE.Mesh( eacGeo, eacMat );
 			eacScene.add( eacMesh );
 			
 			var eacControls = new THREE.OrbitControls( eacCamera, eacRenderer.domElement );
-			eacControls.minDistance = 2;
-			eacControls.maxDistance = 4;
+			eacControls.minDistance = 1;
+			eacControls.maxDistance = 7;
 			
 			eacCamera.position.z = 3;
 
 			var eacAnimate = function () {
 				requestAnimationFrame( eacAnimate );
 
-				eacMesh.rotation.x += 0.01;
+				//eacMesh.rotation.x += 0.01;
 				eacMesh.rotation.y += 0.01;
 
 				eacRenderer.render( eacScene, eacCamera );
@@ -270,8 +252,10 @@
 		h5eac.appendChild(t_eac);
 		document.getElementById("eac3d").appendChild(h5eac);
 		</script>
-	  </div>
-	  <div id="barrel3d"></canvas>
+		</div>
+		</div></div>
+		 <div class="ui-block-d"><div class="ui-body ui-body-d">
+		<div id="barrel3d"></canvas>
 		<script>
 			var barrel3d = document.getElementById("barrel3d");
 			var CANVAS_WIDTH = 250;
@@ -313,46 +297,32 @@
 		h5barrel.appendChild(t_barrel);
 		document.getElementById("barrel3d").appendChild(h5barrel);
 		</script>
-	  </div>
-	  </div>
-	  <div class="flex-container">
-	  </div>
-	  </section>
-	  </div>
-	  <!-- PAGE 3 - THE VIEWS -->
-	  <div id="page3">
-      <section>
-        <div class="d-flex h-100 align-items-center">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-6"><img src="img/about.jpg" alt="..." class="img-fluid rounded-circle d-block mx-auto"></div>
-			  <div class="col-lg-6 mb-4 mb-lg-0">
-                <header class="text-center">
-                  <h2 class="text-uppercase lined">Equirectangular</h2>
-                </header>
-                <p class="lead">This can be an about section or anything else ;)</p>
-                <p>Impossible considered invitation him men instrument saw celebrated unpleasant. Put rest and must set kind next many near nay. He exquisite continued explained middleton am. Voice hours young woody has she think equal. Estate moment he at on wonder at season little. Six garden result summer set family esteem nay estate. End admiration mrs unreserved discovered comparison especially invitation.</p>
-                <p>Delightful unreserved impossible few estimating men favourable see entreaties. She propriety immediate was improving. He or entrance humoured likewise moderate. Much nor game son say feel. Fat make met can must form into gate. Me we offending prevailed discovery.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-	  </div>
-      <section class="bg-gray">
-	<div id="equiV"><div>
-	<div id="cubeV"></div>
-	<div id="eacV"></div>
-	<div id="barrelV"></div>
-      </section>
-    </div>
-    <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/onepage-scroll/jquery.onepage-scroll.min.js"></script>
-    <script src="vendor/lightbox2/js/lightbox.min.js"></script>
-    <script src="js/front.js"></script>
-    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  </body>
+		</div>
+		</div></div>
+		 <div class="ui-block-a"><div class="ui-body ui-body-d">Original video, spherical </div></div>
+		  <div class="ui-block-b"><div class="ui-body ui-body-d">Formatted video wrapped onto a cube</div></div>
+		  <div class="ui-block-c"><div class="ui-body ui-body-d">Formatted by video wrapped onto a cube. The pixels on this cube more closely correspond to their position on the original sphere video </div></div>
+		  <div class="ui-block-d"><div class="ui-body ui-body-d">A combination of a sphere and cube, like a cylinder</div></div>
+		<a href="#page3" data-transition="slide"><div id="nextbutton" class="scroll-btn link-scroll"><i class="fas fa-angle-double-right"></i></div></a><!-- /page -->
+	</div>
+	</section>
+</div>
+
+<!-- Start of third page -->
+<div data-role="page" id="page3">
+	<div role="main" class="ui-content">
+		<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.</p>
+		<p><a href="#page2">Back to page3</a></p>
+	</div><!-- /content -->
+</div><!-- /page -->
+
+<!-- Start of four page -->
+<div data-role="page" id="page4">
+	<div role="main" class="ui-content">
+		<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.</p>
+		<p><a href="#page4">Back to page3</a></p>
+	</div><!-- /content -->
+</div><!-- /page -->
+
+</body>
 </html>
