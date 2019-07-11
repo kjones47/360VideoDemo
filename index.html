@@ -21,7 +21,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
-	<link rel="stylesheet" href="css/kentheme.css" id="theme-stylesheet">
+	<!--<link rel="stylesheet" href="css/kentheme.css" id="theme-stylesheet">
 	<!-- JAVASCRIPT -->
 	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -188,7 +188,7 @@
 			eac3d.appendChild(eacRenderer.domElement);
 			
 			eacVid = document.getElementById( 'eacVid' );
-			eacVid.play();
+		//	eacVid.play();
 			eacVidTexture = new THREE.VideoTexture( eacVid );
 			eacVidTexture.minFilter = THREE.LinearFilter;
 			eacVidTexture.magFilter = THREE.LinearFilter;
@@ -309,11 +309,52 @@
 </div>
 
 <!-- Start of third page -->
-<div data-role="page" id="page3">
-	<div role="main" class="ui-content">
-		<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.</p>
-		<p><a href="#page2">Back to page3</a></p>
-	</div><!-- /content -->
+<div data-role="page" id="page3" style="vertical-align:middle">
+<div class="ui-grid-b" style="horizontal-align:middle">
+		<div class="ui-block-a" style="width:37%">
+		<div style="height:100px;margin:5px" id="equiV">EquiRec</div>
+		<div style="height:100px;margin:5px" id="cubeV">Cube</div>
+		</div>
+		<div class="ui-block-b" style="width:37%">
+		<div style="height:100px;margin:5px" id="eacV">EAC</div>
+		<div style="height:100px;margin:5px" id="barrelV">Barrel</div>
+		</div>
+		<div class="ui-block-c" style="width:26%">
+		<h5>Select Projection</h5>
+		<form style="width:90%">
+         <fieldset data-role = "controlgroup" id="forms1" style ="font-size:4px">
+            <input type = "radio" id = "radio1" name = "radio-choice-0" checked = "checked" />
+            <label style="font-size:15px" for = "radio1">Equi-Rectangular </span></label>
+
+            <input type = "radio" id = "radio2" name = "radio-choice-0" />
+            <label style="font-size:15px" for = "radio2">Cube</label>
+
+            <input type = "radio" id = "radio3" name = "radio-choice-0" />
+            <label style="font-size:15px" for = "radio3">Equi-Angular</label>
+			 
+			<input type = "radio" id = "radio4" name = "radio-choice-0" />
+            <label style="font-size:15px"  for = "radio4">Barrel</label>
+         </fieldset>
+      </form>
+		<h5>Video</h5>
+		<form style="width:90%">
+         <fieldset data-role = "controlgroup" style ="font-size:4px">
+            <input type = "radio" id = "radio5" name = "radio-choice-1" checked = "checked" />
+            <label style="font-size:15px" for = "radio5">Orion Cube</label>
+
+            <input type = "radio" id = "radio6" name = "radio-choice-1" />
+            <label style="font-size:15px" for = "radio6">Waterfall</label>
+
+            <input type = "radio" id = "radio7" name = "radio-choice-1" />
+            <label style="font-size:15px" for = "radio7">Star Wars</label>
+			 
+			<input type = "radio" id = "radio8" name = "radio-choice-1" />
+            <label style="font-size:15px" for = "radio8">Mountain</label>
+         </fieldset>
+      </form>
+		<h5>Click to watch</h5>
+		</div>
+</div>
 </div><!-- /page -->
 
 <!-- Start of four page -->
