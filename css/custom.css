@@ -24,7 +24,7 @@
 			top:10%;
 			left:0%;
 			width: 10wv;
-				height: 10wv;
+			height: 10wv;
 		}
 		#cube3d  {
 			width: 10wv;
@@ -41,23 +41,29 @@
 		p{
 		width: 5wv;
 		}
+		#forms1{
+			font-size:0.8wv;
+		}
+		#page2, #page3{
+			background-color:  #aad1c6;
+		}
 		#equiV{
-			position:
+			background-image: url('https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/equiV.jpg');
+			background-size: 100% 100%;
 		}
 		#cubeV{
-		
+			background-image: url('https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/cubeV.jpg');
+			background-size: 100% 100%;
 		}
 		#eacV{
-		
+			background-image: url('../img/eacV.jpg');
+			background-size: 100% 100%;
 		}
 		#barrelV{
-		
+			background-image: url('../img/barrelV.png');
+			background-size: 100% 100%;
 		}
 		
-		#page3{
-		 background: #aad1c6;
-		 scroll-behavior: smooth;
-		}
 		.text-uppercase lined lined-compact {
 			font-size: 20px;
 		}
