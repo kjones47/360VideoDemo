@@ -64,11 +64,10 @@
 <!-- Start of second page -->
 <div data-role="page" id="page2">
 		<!-- PAGE 2 - THE PROJECTIONS -->
-      <section id="page2">
+      <section>
 	    <h2 class="text-uppercase" >Part I: Spherical Projections</h2>
 		<h4 class="font-italic lead lined"> To create a 360-degree video, we take a video and map it onto a specific geometry after formatting. </h4>
-	  <div class="ui-grid-c">
-	  <div class="ui-block-a"><div class="ui-body ui-body-d">
+	  <div class="flex-container" style="width:100wv">
 	  <div id="equi3d"></canvas>
 		<script>
 			var equi3d = document.getElementById("equi3d");
@@ -116,9 +115,7 @@
 		h5equi.appendChild(t_equi);
 		document.getElementById("equi3d").appendChild(h5equi);
 			
-		</script></div>
-	  </div></div>
-	 <div class="ui-block-b"><div class="ui-body ui-body-d">
+		</script><p>Original video, spherical.</p></div>
 	 <div id="cube3d"></canvas>
 		<script>
 			var cube3d = document.getElementById("cube3d");
@@ -180,9 +177,7 @@
 		h5cube.appendChild(t_cube);
 		document.getElementById("cube3d").appendChild(h5cube);
 		</script>
-		</div>
-	  </div></div>
-	  <div class="ui-block-c"><div class="ui-body ui-body-d">
+		<p>Formatted video wrapped onto a cube</p></div>
 	<div id="eac3d"></canvas>
 		<script>
 			var eac3d = document.getElementById("eac3d");
@@ -262,9 +257,7 @@
 		h5eac.appendChild(t_eac);
 		document.getElementById("eac3d").appendChild(h5eac);
 		</script>
-		</div>
-		</div></div>
-		 <div class="ui-block-d"><div class="ui-body ui-body-d">
+		<p>The pixels on this cube are more accurately placed.</p></div>
 		<div id="barrel3d"></canvas>
 		<script>
 			var barrel3d = document.getElementById("barrel3d");
@@ -332,12 +325,8 @@
 		h5barrel.appendChild(t_barrel);
 		document.getElementById("barrel3d").appendChild(h5barrel);
 		</script>
+		<p>A combination of a sphere and cube. Under Construction.</p>
 		</div>
-		</div></div>
-		 <div class="ui-block-a"><div class="ui-body ui-body-d">Original video, spherical. </div></div>
-		  <div class="ui-block-b"><div class="ui-body ui-body-d">Formatted video wrapped onto a cube.</div></div>
-		  <div class="ui-block-c"><div class="ui-body ui-body-d">The pixels on this cube are more accurately placed.</div></div>
-		  <div class="ui-block-d"><div class="ui-body ui-body-d">A combination of a sphere and cube. Under Construction.</div></div>
 		<a href="#page3" data-transition="slide"><div id="nextbutton" class="scroll-btn link-scroll"><i class="fas fa-angle-double-right"></i></div></a><!-- /page -->
 	</div>
 	</section>
@@ -345,10 +334,8 @@
 
 <!-- Start of third page -->
 <div data-role="page" id="page3" >
-   <section id="page2">
-  <h2 class="text-uppercase" >Part II: CREATING A VIDEO</h2>
+  <h2 style="padding-top:20px" class="text-uppercase" >Part II: CREATING A VIDEO</h2>
 	<h4 class="font-italic lead lined"> A camera is placed in the center of the geometry </h4>
-	 
 <div align="center">
 		<form>
 		<h5 style="margin:20px">Projection</h5>
@@ -382,7 +369,6 @@
          </fieldset>
       </form>
 	  </div>
-	  </section>
 	  <a style="width:100%" href="#page4">
 	  <div data-role="footer" style="width:100%;position:absolute;bottom:0%"> 
 		<h5>Click to watch</h5>
