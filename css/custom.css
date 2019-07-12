@@ -45,7 +45,7 @@
 		p{
 		width: 5wv;
 		}
-		#page2, #page3{
+		#page1, #page2, #page3{
 			background-color:  #aad1c6;
 		}
 		#equiV{
@@ -76,7 +76,7 @@
 			width:auto;
 			
 		}
-		#page1{
+		#page5{
 			background: linear-gradient(70deg, #aad1c6, #3a5e55);
 			background-size: 400% 400%;
 			-webkit-animation: AnimationName 10s ease 1;
