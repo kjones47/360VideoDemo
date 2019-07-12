@@ -29,13 +29,18 @@
 	<script src="myjs/three.js"></script>
 	<script src="myjs/video.js"></script>
 	<script src="myjs/OrbitControls.js"></script>
+	<script src="myjs/WebGL.js"></script>
 	<!--Videos-->
 	<video id="equiVid" loop muted crossOrigin="anonymous" webkit-playsinline style="display:none;">
 			<source src="https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/equi/Orion360_test_video_1920x960.mp4">
 	</video>
 	<video id="eacVid" crossorigin="anonymous" autoplay loop style="display:none" controls>
+			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/starwars_cube.mp4" type='video/mp4'>
+	</video>
+	<video id="video" crossorigin="anonymous" autoplay loop style="display:none" controls>
 			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/oriontestvideo_EAC.mp4" type='video/mp4'>
 	</video>
+
 </head>
 <body>
 <!-- Start of first page -->
@@ -180,7 +185,7 @@
 			var CANVAS_HEIGHT = 250;
 
 			var eacScene = new THREE.Scene();
-			var eacCamera = new THREE.PerspectiveCamera(45, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1, 100);
+			var eacCamera = new THREE.PerspectiveCamera(55, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1, 1000);
 
 			var eacRenderer = new THREE.WebGLRenderer();
 			eacRenderer.setClearColor(0x000, 1.0);
@@ -239,7 +244,7 @@
 				requestAnimationFrame( eacAnimate );
 
 				//eacMesh.rotation.x += 0.01;
-				eacMesh.rotation.y += 0.01;
+				//eacMesh.rotation.y += 0.01;
 
 				eacRenderer.render( eacScene, eacCamera );
 			};
@@ -269,10 +274,14 @@
 			barrelRenderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 			barrel3d.appendChild(barrelRenderer.domElement);
 
-			var barrelGeo = new THREE.BoxGeometry( 1, 1, 1 );
-			var barrelMat = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			var barrelMesh = new THREE.Mesh( barrelGeo, barrelMat );
-			barrelScene.add( barrelMesh );
+			var barrelGeo1 = new THREE.BoxGeometry( 1, 1, 1 );
+			var barrelGeo2 = new THREE.SphereGeometry( .75, 12, 12 );
+			var barrelMat1 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			var barrelMat2 = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+			var barrelMesh1 = new THREE.Mesh( barrelGeo1, barrelMat1 );
+			var barrelMesh2 = new THREE.Mesh( barrelGeo2, barrelMat2 );
+			barrelScene.add( barrelMesh1 );
+			barrelScene.add( barrelMesh2 );
 			
 			var barrelControls = new THREE.OrbitControls( barrelCamera, barrelRenderer.domElement );
 			barrelControls.minDistance = 2;
@@ -283,8 +292,10 @@
 			var barrelAnimate = function () {
 				requestAnimationFrame( barrelAnimate );
 
-				barrelMesh.rotation.x += 0.01;
-				barrelMesh.rotation.y += 0.01;
+				barrelMesh1.rotation.x += 0.01;
+				barrelMesh2.rotation.x += 0.01;
+				barrelMesh1.rotation.y += 0.01;
+				barrelMesh2.rotation.y += 0.01;
 
 				barrelRenderer.render( barrelScene, barrelCamera );
 			};
@@ -301,8 +312,8 @@
 		</div></div>
 		 <div class="ui-block-a"><div class="ui-body ui-body-d">Original video, spherical </div></div>
 		  <div class="ui-block-b"><div class="ui-body ui-body-d">Formatted video wrapped onto a cube</div></div>
-		  <div class="ui-block-c"><div class="ui-body ui-body-d">Formatted by video wrapped onto a cube. The pixels on this cube more closely correspond to their position on the original sphere video </div></div>
-		  <div class="ui-block-d"><div class="ui-body ui-body-d">A combination of a sphere and cube, like a cylinder</div></div>
+		  <div class="ui-block-c"><div class="ui-body ui-body-d">The pixels on this cube are more accurately placed </div></div>
+		  <div class="ui-block-d"><div class="ui-body ui-body-d">A combination of a sphere and cube</div></div>
 		<a href="#page3" data-transition="slide"><div id="nextbutton" class="scroll-btn link-scroll"><i class="fas fa-angle-double-right"></i></div></a><!-- /page -->
 	</div>
 	</section>
@@ -310,37 +321,21 @@
 
 <!-- Start of third page -->
 <div data-role="page" id="page3" >
-<div class="ui-grid-c">
-		<div class="ui-block-a" >
-		<img style="width:150px;height:100px" src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/equiV.jpg">
-		</div>
-		<div class="ui-block-b" >
-		<img style="width:150px;height:100px" src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/cubeV.jpg">
-		</div>
-		<div class="ui-block-c">
-		<img style="width:150px;height:100px" src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/eacV.jpg">
-		</div>
-		<div class="ui-block-d">
-		<img style="width:150px;height:100px" src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/barrelV.png">
-		</div>
-		</div>
-		<div class="flex-container2">
-		<div style="width:50%">
-		
+<div>
 		<form>
 		<h5>Projection</h5>
          <fieldset data-role = "controlgroup"  data-type="horizontal" id="forms1" style ="font-size:4px">
             <input type = "radio" id = "equi" name = "radio-choice-0" checked = "checked" />
-            <label style="font-size:15px" for = "radio1">Equi-Rectangular </span></label>
+            <label style="font-size:15px" for = "equi">Equi-Rectangular </span></label>
 
             <input type = "radio" id = "cube" name = "radio-choice-0" />
-            <label style="font-size:15px" for = "radio2">Cube</label>
+            <label style="font-size:15px" for = "cube">Cube</label>
 
             <input type = "radio" id = "eac" name = "radio-choice-0" />
-            <label style="font-size:15px" for = "radio3">Equi-Angular</label>
+            <label style="font-size:15px" for = "eac">Equi-Angular</label>
 			 
 			<input type = "radio" id = "barrel" name = "radio-choice-0" />
-            <label style="font-size:15px"  for = "radio4">Barrel</label>
+            <label style="font-size:15px"  for = "barrel">Barrel</label>
          </fieldset>
       </form>
 	  </div>
@@ -349,28 +344,27 @@
 		<form >
          <fieldset data-role = "controlgroup" data-type="horizontal" style ="font-size:4px">
             <input type = "radio" id = "orion" name = "radio-choice-1" checked = "checked" />
-            <label style="font-size:15px" for = "orion">Orion Cube</label>
+            <label style="font-size:15px" for = "orion">Orion360</label>
 
             <input type = "radio" id = "scuba" name = "radio-choice-1" />
             <label style="font-size:15px" for = "scuba">Scuba Dive</label>
 
-            <input type = "radio" id = "starwars" name = "radio-choice-1" />
-            <label style="font-size:15px" for = "starwars">Star Wars</label>
-			 
+            <input type = "radio" id = "star" name = "radio-choice-1" />
+            <label style="font-size:15px" for = "star">Star Wars</label>
          </fieldset>
       </form>
 	  </div>
-	  </div>
+	  <a style="width:100%" href="#page4">
 	  <div data-role="footer" style="width:100%"> 
 		<h5>Click to watch</h5>
 	  </div> 
+	  </a>
 </div><!-- /page -->
 
 <!-- Start of four page -->
 <div data-role="page" id="page4">
-	<div role="main" class="ui-content">
-	<div id="finalview"></canvas>
-	
+	<div id="final3d"></canvas>
+			
 	</div><!-- /content -->
 </div><!-- /page -->
 
