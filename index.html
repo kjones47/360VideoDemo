@@ -35,7 +35,10 @@
 			<source src="https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/equi/Orion360_test_video_1920x960.mp4">
 	</video>
 	<video id="eacVid" crossorigin="anonymous" autoplay loop style="display:none" controls>
-			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/starwars_cube.mp4" type='video/mp4'>
+			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/oriontestvideo_EAC.mp4" type='video/mp4'>
+	</video>
+	<video id="barrelVid" crossorigin="anonymous" autoplay loop style="display:none" controls>
+			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/oriontestvideo_BARR2.mp4" type='video/mp4'>
 	</video>
 	<video id="video" crossorigin="anonymous" autoplay loop style="display:none" controls>
 			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/oriontestvideo_EAC.mp4" type='video/mp4'>
@@ -85,6 +88,7 @@
 			var textureEqui = new THREE.VideoTexture( equiVid );
 			
 			var equiGeo = new THREE.SphereBufferGeometry(3, 28, 28 );
+			equiGeo.scale(-1,1,1);
 			var equiMat = new THREE.MeshBasicMaterial( { map: textureEqui, side: THREE.DoubleSide } );
 			var equiMesh = new THREE.Mesh( equiGeo, equiMat );
 			equiScene.add( equiMesh );
@@ -93,7 +97,7 @@
 			equiControls.minDistance = 1;
 			equiControls.maxDistance = 7;
 			
-			equiCamera.position.z = 1;
+			equiCamera.position.z = 6;
 
 			var equiAnimate = function () {
 				requestAnimationFrame( equiAnimate );
@@ -149,6 +153,7 @@
 			}
 
 			var cubeGeo = new THREE.BoxGeometry( 3, 3, 3 );
+			cubeGeo.scale(-1, 1, 1);
 			var cubeMesh = new THREE.Mesh( cubeGeo, materialArray );
 			cubeScene.add( cubeMesh );
 			
@@ -185,7 +190,7 @@
 			var CANVAS_HEIGHT = 250;
 
 			var eacScene = new THREE.Scene();
-			var eacCamera = new THREE.PerspectiveCamera(55, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1, 1000);
+			var eacCamera = new THREE.PerspectiveCamera(55, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1, 100);
 
 			var eacRenderer = new THREE.WebGLRenderer();
 			eacRenderer.setClearColor(0x000, 1.0);
@@ -229,7 +234,7 @@
 			
 			eacGeo.rotateY(Math.PI/2);
 			eacGeo.rotateX(Math.PI/2);
-			eacGeo.scale( 1, 1, 1);
+			eacGeo.scale( -1, 1, 1);
 			var eacMat = new THREE.MeshBasicMaterial( { map: eacVidTexture, side:THREE.DoubleSide } );
 			var eacMesh = new THREE.Mesh( eacGeo, eacMat );
 			eacScene.add( eacMesh );
@@ -238,13 +243,13 @@
 			eacControls.minDistance = 1;
 			eacControls.maxDistance = 7;
 			
-			eacCamera.position.z = 3;
+			eacCamera.position.z = 5;
 
 			var eacAnimate = function () {
 				requestAnimationFrame( eacAnimate );
 
 				//eacMesh.rotation.x += 0.01;
-				//eacMesh.rotation.y += 0.01;
+				eacMesh.rotation.y += 0.01;
 
 				eacRenderer.render( eacScene, eacCamera );
 			};
@@ -273,27 +278,46 @@
 			barrelRenderer.setClearColor(0x000, 1.0);
 			barrelRenderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 			barrel3d.appendChild(barrelRenderer.domElement);
+			
+			barrelVid = document.getElementById( 'barrelVid' );
+		//	eacVid.play();
+			barrelVidTexture = new THREE.VideoTexture( barrelVid );
+			barrelVidTexture.minFilter = THREE.LinearFilter;
+			barrelVidTexture.magFilter = THREE.LinearFilter;
+			barrelVidTexture.format = THREE.RGBFormat;
 
-			var barrelGeo1 = new THREE.BoxGeometry( 1, 1, 1 );
-			var barrelGeo2 = new THREE.SphereGeometry( .75, 12, 12 );
-			var barrelMat1 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			var barrelMat2 = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
-			var barrelMesh1 = new THREE.Mesh( barrelGeo1, barrelMat1 );
+			var cube = new THREE.BoxGeometry( 1, 1, 1 );
+			var barrelGeo2 = new THREE.SphereGeometry( .75, 18, 18 );
+			var barrelMat1 = new THREE.MeshBasicMaterial( { map: barrelVidTexture } );
+			var barrelMat2 = new THREE.MeshBasicMaterial( { map: barrelVidTexture, side:THREE.BackSide } );
+			
+		//bottom
+			var face1 = [new THREE.Vector2(0.8, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, .5), new THREE.Vector2(0.8, .5)];
+				//top
+			var face2 = [new THREE.Vector2(0.8, .5), new THREE.Vector2(1, 0.5), new THREE.Vector2(1, 1), new THREE.Vector2(0.8, 1)]; 
+				
+			cube.faceVertexUvs[0] = [];
+				
+			cube.faceVertexUvs[0][2] = [face2[0], face2[1], face2[3]];
+			cube.faceVertexUvs[0][3] = [face2[1], face2[2], face2[3]];
+
+			cube.faceVertexUvs[0][0] = [face1[0], face1[1], face1[3]];
+			cube.faceVertexUvs[0][1] = [face1[1], face1[2], face1[3]];
+			
+			var barrelMesh1 = new THREE.Mesh( cube, barrelMat1 );
 			var barrelMesh2 = new THREE.Mesh( barrelGeo2, barrelMat2 );
 			barrelScene.add( barrelMesh1 );
 			barrelScene.add( barrelMesh2 );
 			
 			var barrelControls = new THREE.OrbitControls( barrelCamera, barrelRenderer.domElement );
 			barrelControls.minDistance = 2;
-			barrelControls.maxDistance = 4;
+			barrelControls.maxDistance = 7;
 			
-			barrelCamera.position.z = 3;
+			barrelCamera.position.z = 4;
 
 			var barrelAnimate = function () {
 				requestAnimationFrame( barrelAnimate );
 
-				barrelMesh1.rotation.x += 0.01;
-				barrelMesh2.rotation.x += 0.01;
 				barrelMesh1.rotation.y += 0.01;
 				barrelMesh2.rotation.y += 0.01;
 
@@ -310,10 +334,10 @@
 		</script>
 		</div>
 		</div></div>
-		 <div class="ui-block-a"><div class="ui-body ui-body-d">Original video, spherical </div></div>
-		  <div class="ui-block-b"><div class="ui-body ui-body-d">Formatted video wrapped onto a cube</div></div>
-		  <div class="ui-block-c"><div class="ui-body ui-body-d">The pixels on this cube are more accurately placed </div></div>
-		  <div class="ui-block-d"><div class="ui-body ui-body-d">A combination of a sphere and cube</div></div>
+		 <div class="ui-block-a"><div class="ui-body ui-body-d">Original video, spherical. </div></div>
+		  <div class="ui-block-b"><div class="ui-body ui-body-d">Formatted video wrapped onto a cube.</div></div>
+		  <div class="ui-block-c"><div class="ui-body ui-body-d">The pixels on this cube are more accurately placed.</div></div>
+		  <div class="ui-block-d"><div class="ui-body ui-body-d">A combination of a sphere and cube. Under Construction.</div></div>
 		<a href="#page3" data-transition="slide"><div id="nextbutton" class="scroll-btn link-scroll"><i class="fas fa-angle-double-right"></i></div></a><!-- /page -->
 	</div>
 	</section>
@@ -321,10 +345,14 @@
 
 <!-- Start of third page -->
 <div data-role="page" id="page3" >
-<div>
+   <section id="page2">
+  <h2 class="text-uppercase" >Part II: CREATING A VIDEO</h2>
+	<h4 class="font-italic lead lined"> A camera is placed in the center of the geometry </h4>
+	 
+<div align="center">
 		<form>
-		<h5>Projection</h5>
-         <fieldset data-role = "controlgroup"  data-type="horizontal" id="forms1" style ="font-size:4px">
+		<h5 style="margin:20px">Projection</h5>
+         <fieldset data-role = "controlgroup"  id="forms1" style ="font-size:8px;width:50%">
             <input type = "radio" id = "equi" name = "radio-choice-0" checked = "checked" />
             <label style="font-size:15px" for = "equi">Equi-Rectangular </span></label>
 
@@ -334,15 +362,15 @@
             <input type = "radio" id = "eac" name = "radio-choice-0" />
             <label style="font-size:15px" for = "eac">Equi-Angular</label>
 			 
-			<input type = "radio" id = "barrel" name = "radio-choice-0" />
-            <label style="font-size:15px"  for = "barrel">Barrel</label>
+			<input type = "radio" id = "barrel" disabled name = "radio-choice-0" />
+            <label style="font-size:15px"  for = "barrel"  disabled >Barrel</label>
          </fieldset>
       </form>
 	  </div>
-	  <div style="width:50%;display:inline">
-		<h5>Video</h5>
+	  <div align="center">
+		<h5 style="margin:20px">Video</h5>
 		<form >
-         <fieldset data-role = "controlgroup" data-type="horizontal" style ="font-size:4px">
+         <fieldset data-role = "controlgroup" style ="font-size:8px;width:50%">
             <input type = "radio" id = "orion" name = "radio-choice-1" checked = "checked" />
             <label style="font-size:15px" for = "orion">Orion360</label>
 
@@ -354,8 +382,9 @@
          </fieldset>
       </form>
 	  </div>
+	  </section>
 	  <a style="width:100%" href="#page4">
-	  <div data-role="footer" style="width:100%"> 
+	  <div data-role="footer" style="width:100%;position:absolute;bottom:0%"> 
 		<h5>Click to watch</h5>
 	  </div> 
 	  </a>

@@ -80,6 +80,10 @@
 			-moz-animation: AnimationName 10s ease 1;
 			animation: AnimationName 10s ease 1;
 		}
+		#page2{
+			width:auto;
+			
+		}
 		#page1{
 			background: linear-gradient(70deg, #aad1c6, #3a5e55);
 			background-size: 400% 400%;
