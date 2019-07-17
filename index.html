@@ -448,6 +448,7 @@ function prog(x){
 			final3d.appendChild(finalRenderer.domElement);
 		
 		function change(){
+		document.getElementById('final3d').innerHTML = "";
 		if (proj == 'equi'){
 			if(vid == 'orion'){ 
 				 document.getElementById("video").src = "https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/equi/Orion360_test_video_1920x960.mp4";
@@ -529,7 +530,7 @@ function prog(x){
 
 	//	finalGeo.rotateX(Math.PI/2);
 	 finalGeo.rotateY(-1 * Math.PI/2);
-  finalGeo.rotateX(Math.PI/2);
+	 finalGeo.rotateX(Math.PI/2);
 			}
 			
 			finalGeo.scale(1,-1,1);
