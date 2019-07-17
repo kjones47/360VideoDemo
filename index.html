@@ -40,7 +40,7 @@
 	<video id="barrelVid" crossorigin="anonymous" autoplay loop style="display:none" controls>
 			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/oriontestvideo_BARR2.mp4" type='video/mp4'>
 	</video>
-	<video id="video" crossorigin="anonymous" autoplay loop style="display:none" controls>
+	<video id="video" crossorigin="anonymous" autoplay loop playsinline webkit-playsinline style="display:none" controls>
 			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/oriontestvideo.mp4" type='video/mp4'>
 	</video>
 
@@ -401,9 +401,11 @@ function prog(x){
 			var finalVid = document.getElementById('video');
 			function rewind() {
 				finalVid.currentTime = finalVid.currentTime-finalVid.duration/4;
+				finalVid.play();
 			}
 			function forward() {
 				finalVid.currentTime = finalVid.currentTime+finalVid.duration/4;
+				finalVid.play();
 			}
 			function pause() {
 				if(finalVid.paused){
