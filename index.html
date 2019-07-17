@@ -31,7 +31,7 @@
 	<script src="myjs/OrbitControls.js"></script>
 	<script src="myjs/WebGL.js"></script>
 	<!--Videos-->
-	<video id="equiVid" loop muted crossOrigin="anonymous" webkit-playsinline style="display:none;">
+	<video id="equiVid" crossOrigin="anonymous" autoplay loop style="display:none;" controls>
 			<source src="https://raw.githubusercontent.com/kjones47/Projections360/gh-pages/oriontestvideo.mp4" type='video/mp4'>
 	</video>
 	<video id="eacVid" crossorigin="anonymous" autoplay loop style="display:none" controls>
@@ -54,6 +54,7 @@
           <div class="container text-center text-white">
             <p class="font-italic lead">Welcome.</p>
             <h1 class="text-uppercase my-4">360-Degree Video Spherical Projections Demo</h1>
+			<h6>Orient your phone horizontally</h6>
             <p class="font-italic lead">Click the arrow to start</p>
           </div>
         </div>
@@ -493,6 +494,7 @@ function prog(x){
 			var finalGeo;
 			if(document.getElementById('equi').checked){
 				finalGeo = new THREE.SphereBufferGeometry(3, 28, 28 );
+				finalGeo.rotateX(Math.PI);
 			}else{
 				finalGeo = new THREE.BoxGeometry(3, 3, 3 );
 				textureFinal.minFilter = THREE.NearestFilter;
