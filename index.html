@@ -394,9 +394,25 @@ function prog(x){
 <!-- Start of four page -->
 <div data-role="page" id="page4">
 	<div id="final3d"></canvas>
+		  <i id="rewind" onclick="rewind()" class='fas fa-fast-backward' style='font-size:25px;color:white;position:absolute;top:10px;right:95px;'></i>
+		  <i id="pause" onclick="pause()" class='fas fa-pause' style='font-size:25px;color:white;position:absolute;top:10px;right:65px;'></i>
+		  <i id="forward" onclick="forward()" class='fas fa-fast-forward' style='font-size:25px;color:white;position:absolute;top:10px;right:30px;'></i>
 			<script>
+			var finalVid = document.getElementById('video');
+			function rewind() {
+				finalVid.currentTime = finalVid.currentTime-finalVid.duration/4;
+			}
+			function forward() {
+				finalVid.currentTime = finalVid.currentTime+finalVid.duration/4;
+			}
+			function pause() {
+				if(finalVid.paused){
+					finalVid.play();
+				}else{
+					finalVid.pause();
+				}	
+			}
 			var proj ="equi";
-			var vid = "";
 			
 			function setEqui(){
 			proj='equi';
@@ -489,6 +505,7 @@ function prog(x){
 		
 			var finalVid = document.getElementById( 'video' );
 			finalVid.play();
+			
 			var textureFinal = new THREE.VideoTexture( finalVid );
 			
 			var finalGeo;
